@@ -1,0 +1,34 @@
+html(lang="en")
+head
+  title Project App
+  meta(charset="UTF-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  link(rel="stylesheet" href="/css/login.css")
+
+body
+  .container
+
+    form.form
+      h2.form__title Registrarse
+      .form__group
+        input.form__input(type="text" name="nombre" id="nombre" placeholder="Nombre")
+        label(for="nombre" class="form__label") Nombre
+
+      .form__group
+        input.form__input(type="email" name="email" id="email" placeholder="Email")
+        label(for="email" class="form__label") Email
+      
+      .form__group
+        input.form__input(type="password" name="contraseña" id="contraseña" placeholder="Contraseña")
+        label(for="contraseña" class="form__label") Contraseña
+
+      .form__group
+        input.form__input(type="password" name="confirmarContraseña" id="confirmarContraseña" placeholder="Confirmar contraseña")
+        label(for="confirmarContraseña" class="form__label") Confirmar contraseña
+      
+      .form__button
+        a(href="" class="form__button form__button--iniciar createAccount") Crear cuenta
+        a(href="/login" class="form__button form__button--cancelar") Cancelar
+
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js")
+  script(src="/js/signup.js")

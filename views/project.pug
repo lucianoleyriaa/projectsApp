@@ -1,0 +1,82 @@
+extends base
+
+block content
+  main.project__detail
+    article.project__container__main
+      h2.project__name= Proyecto.name
+      p.project__description
+        span= `Descripcion: ${Proyecto.description}` 
+      .buttons
+      h3.project-tasks__title Tareas:
+      each tarea in tareas
+        .project-tasks__container
+          if tarea.complete
+            p.project-task= tarea.name
+            .project-buttons__container 
+              button.btn--done.btn.taskDone.btn-complete( data-id=`${tarea.id}`) Realizada
+              //- a.btn--edit.btn(href=`${Proyecto.id}/editTask/${tarea.id}`) Modificar
+              //- button.btn--edit.btn.btn__edit-task(data-idedittask = `${tarea.id}`) Modificar
+              button.btn--edit.btn.btn__edit-task(data-nameedittask = `${tarea.name}` data-idproject=`${Proyecto.id}` data-idtask=`${tarea.id}`) Modificar
+              button.btn--delete.btn.taskDelete(data-id=`${tarea.id}`) Eliminar
+          else 
+            p.project-task= tarea.name
+            .project-buttons__container 
+              button.btn--done.btn.taskDone( data-id=`${tarea.id}`) Pendiente
+              //- a.btn--edit.btn(href=`${Proyecto.id}/editTask/${tarea.id}`) Modificar
+              button.btn--edit.btn.btn__edit-task(data-nameedittask = `${tarea.name}` data-idproject=`${Proyecto.id}` data-idtask=`${tarea.id}`) Modificar
+              button.btn--delete.btn.taskDelete(data-id=`${tarea.id}`) Eliminar
+      
+      .project-options
+        //- a.btn--green.btn(href=`${Proyecto.id}/task`) Agregar Tarea
+        button.btn--green.btn#addTask(href=``) Agregar Tarea
+        //- a.btn--edit.btn#editProject(href=`/editProject/${Proyecto.id}`) Editar Proyecto
+        button.btn--edit.btn.editProject(href=``) Editar Proyecto
+        //- a.btn--delete.btn#deleteProject(href="#" data-id=`${Proyecto.id}`) Eliminar Proyecto
+        button.btn--delete.btn.deleteProject(href="#") Eliminar Proyecto
+        // La ruta de abajo no es conveniente porque se envia una peticion get cuando tiene que ser delete. Para eso utilizamos axios
+        //- a.btn--delete.btn#deleteProject(href=`/api/v1/projects/deleteProject/${Proyecto.id}`) Eliminar Proyecto
+        //- button 
+
+  .overlay.hidden 
+
+  //- Modal para editar el nombre de las tareas
+  .modal__edit-task.hidden 
+    form.editTaskForm(action="#")
+      .form-group
+        label(class="form-group__label label__edit-task" for="name") Nombre
+        input(type="text" class="form-group__input input__edit-task" id="name" name="name" value=``)
+      .form-group.send  
+        //- input(type="submit" class="form-group__button" id="editProject" value="Guardar")
+        button.form-group__button.btn.btn--green.btn(id="btn__edit-task") Guardar
+
+  //- Modal para agregar nuevas tareas
+  .modal__add-task.hidden
+    form.form(action=`/api/v1/projects/${Proyecto.id}/tasks` method="POST")
+      .form-group
+        label(class="form-group__label" for="name") Nueva tarea:
+        input(type="text" class="form-group__input" id="name" name="name")
+      .form-group.send  
+        input(type="submit" class="form-group__button btn--green" value="Agregar Tarea") 
+        a.btn--delete.btn.form-group__button(href=`/projects/${Proyecto.id}`) Cancelar  
+
+  //- Modal para editar el nombre del proyecto
+  .modal__edit-project.hidden
+    form.form(action='#')
+      .form-group
+        label(class="form-group__label" for="name") Nombre:
+        input(type="text" class="form-group__input" id="projectName" name="projectName" value=`${Proyecto.name}`)
+      .form-group   
+        label(class="form-group__label" for="name") Descripcion:
+        textarea.form-group__input(cols="10", rows="5" id="description" name="description")= `${Proyecto.description}`
+      .form-group.send  
+          //- input(type="submit" class="form-group__button" id="editProjectForm" value="Guardar" data-idproject=`${Proyecto.id}`) 
+          a.btn.btn--green.form-group__button(href="" id="editProjectForm" data-idproject=`${Proyecto.id}`) Guardar
+          a.btn--delete.btn.form-group__button(href=`/projects/${Proyecto.id}`) Cancelar
+
+  //- Modal para eliminar el proyecto
+  .modal__delete-project.hidden
+    .confirmation__container
+      h2.confirmation__message Estas seguro que quieres eliminar este proyecto?
+    .container  
+      a.btn.btn--green.btn__delete-project(href="" data-iddeleteproject = `${Proyecto.id}`) Aceptar 
+      a.btn.btn--delete(href="") Cancelar  

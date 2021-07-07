@@ -1,0 +1,16 @@
+extends base
+
+block content
+  main.new-project__main
+    .new-project__container
+      h1.new-project__title Nuevo Proyecto
+      form(action="/api/v1/projects/createProject/" method="POST")
+        .form-group
+          label(class="form-group__label" for="name") Nombre
+          input(type="text" class="form-group__input" id="name" name="name")
+        .form-group
+          label(class="form-group__label" for="description") Descripcion
+          //- input(type="text" class="form-group__input" id="description" name="description")
+          textarea.form-group__input(cols="10", rows="5" id="description" name="description")
+        .form-group.send  
+          input(type="submit" class="form-group__button btn--green" value="Agregar") 

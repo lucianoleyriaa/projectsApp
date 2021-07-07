@@ -1,0 +1,15 @@
+.aside
+  .button__container
+    a.button(href="/addProject") Agregar Proyecto
+
+  .proyect__container__list
+    ul.projects__ul
+      each project in Proyectos
+        if project.active
+          li.projects__li.projects__li--active
+            a.projects__link(href=`/projects/${project.id}`)= project.name
+        else 
+          li.projects__li
+            a.projects__link(href=`/projects/${project.id}`)= project.name
+
+  

@@ -1,0 +1,33 @@
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  title Project App
+  link(rel="stylesheet", href="/css/styles.css")
+  link(rel="stylesheet", href="/css/modal.css")
+
+body
+
+  include _header
+
+  .section
+
+    include _aside
+
+    block content 
+
+  include _footer 
+
+  //- .overlay.hidden 
+  //- .modal.hidden
+  //-   form.form(action=`/api/v1/projects/${Proyecto.id}/tasks` method="POST")
+  //-     .form-group
+  //-       label(class="form-group__label" for="name") Nueva tarea:
+  //-       input(type="text" class="form-group__input" id="name" name="name")
+  //-     .form-group.send  
+  //-       input(type="submit" class="form-group__button" value="Agregar Tarea") 
+  //-       a.btn--delete.btn.form-group__button(href=`/${Proyecto.id}`) Cancelar  
+
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js")
+  script(src="/js/app.js")          
+  script(src="/js/tasks.js")          

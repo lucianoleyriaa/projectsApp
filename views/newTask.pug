@@ -1,0 +1,13 @@
+extends base 
+
+block content
+  main.new-project__main
+    .new-project__container
+      h1.new-project__title= Proyecto.name
+      form(action=`/api/v1/projects/${Proyecto.id}/tasks` method="POST")
+        .form-group
+          label(class="form-group__label" for="name") Tarea
+          input(type="text" class="form-group__input" id="name" name="name")
+        .form-group.send  
+          input(type="submit" class="form-group__button" value="Agregar Tarea") 
+          a.btn--delete.btn.form-group__button(href=`/${Proyecto.id}`) Cancelar

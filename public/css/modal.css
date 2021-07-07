@@ -1,0 +1,45 @@
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+}
+
+.container {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.modal__delete-project {
+  padding: 2rem;
+}
+
+.confirmation__container {
+  text-align: center;
+}
+
+.confirmation__message {
+  background-image: linear-gradient(to right bottom,  rgba(85, 197, 122), rgba(126, 213, 111, 1));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.modal__add-task, .modal__edit-task, .modal__delete-project, .modal__edit-project {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  width: 40vw;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  color: #333;
+}
+
+.hidden {
+  display: none;
+}

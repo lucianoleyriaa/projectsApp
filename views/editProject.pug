@@ -1,0 +1,15 @@
+extends base
+
+block content
+  main.new-project__main
+    .new-project__container
+      h1.new-project__title= Proyecto.name
+      form.editProjectForm(action="#" data-id=`${Proyecto.id}`)
+        .form-group
+          label(class="form-group__label" for="name") Nombre
+          input(type="text" class="form-group__input" id="name" name="name" value=`${Proyecto.name}`)
+        .form-group
+          label(class="form-group__label" for="name") Descripcion
+          input(type="text" class="form-group__input" id="description" name="description" value=`${Proyecto.description}`)
+        .form-group.send  
+          input(type="submit" class="form-group__button" id="editProject" value="Guardar") 
